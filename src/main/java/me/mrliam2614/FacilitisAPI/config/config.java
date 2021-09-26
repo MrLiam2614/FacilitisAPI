@@ -1,7 +1,6 @@
 package me.mrliam2614.FacilitisAPI.config;
 
 import me.mrliam2614.FacilitisAPI.FacilitisAPI;
-import me.mrliam2614.FacilitisAPI.consoleManager.ConsoleMessage;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -50,7 +49,7 @@ public class config {
         }
     }
 
-    public FileConfiguration getConfig(Plugin getPlugin, String fileName){
+    public FileConfiguration getConfig(Plugin getPlugin, String fileName) {
         /**
          @param getPlugin: Your plugin class
          @param fileName: Your plugin fileName
@@ -65,9 +64,9 @@ public class config {
         return customConfig;
     }
 
-    private String configName(String fileName){
+    private String configName(String fileName) {
         String extension = fileName.substring(fileName.lastIndexOf("."));
-        if(!extension.equalsIgnoreCase("yml")){
+        if (!extension.equalsIgnoreCase("yml")) {
             fileName += ".yml";
         }
         return fileName;
