@@ -1,6 +1,7 @@
 package me.mrliam2614.FacilitisAPI.consoleManager;
 
 import me.mrliam2614.FacilitisAPI.FacilitisAPI;
+import me.mrliam2614.FacilitisAPI.utils.StrUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -37,16 +38,16 @@ public class ConsoleMessage {
             default:
                 startLine = "&7[&9Info&7]";
         }
-        String pluginName = "&7[&6"+sender.getName()+"&7]";
+        String pluginName = "&7[&6" + sender.getName() + "&7]";
 
         String complete = startLine + pluginName + message;
         Bukkit.getConsoleSender().sendMessage(plugin.strUtils.colored(complete));
     }
 
 
-    public void sendMessage(String message){
+    public void sendMessage(String message) {
         /**
-        @param message message to send
+         @param message message to send
          **/
         sendMessage(plugin, message, "info");
     }
