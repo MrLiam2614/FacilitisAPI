@@ -26,7 +26,6 @@ public class vaultImplementation {
 
     public void Start() {
         if (!setupEconomy()) {
-            plugin.console.sendMessage(plugin, "Disabled due to no Vault dependency found!", "critical");
             plugin.getServer().getPluginManager().disablePlugin(plugin);
             return;
         }
@@ -36,14 +35,16 @@ public class vaultImplementation {
 
     private boolean setupEconomy() {
         if (plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
+            plugin.console.sendMessage(plugin, "Disabled due to no Vault dependency found!", "critical");
             return false;
         }
         RegisteredServiceProvider<Economy> rsp = plugin.getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
+            plugin.console.sendMessage(plugin, "Disabled due to no Economy Plugin - dependency found!", "critical");
             return false;
         }
         econ = rsp.getProvider();
-        return econ != null;
+        return true;
     }
 
     private void setupChat() {

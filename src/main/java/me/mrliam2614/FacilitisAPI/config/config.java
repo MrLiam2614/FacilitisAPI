@@ -6,8 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class config {
     private final FacilitisAPI plugin;
@@ -21,10 +20,12 @@ public class config {
          @param getPlugin: Your plugin class
          @param fileName: Your file name
          **/
+
+        fileName = configName(fileName);
         File configFile = new File(getPlugin.getDataFolder(), fileName);
         if (!configFile.exists()) {
             configFile.getParentFile().mkdirs();
-            getPlugin.saveResource("arenas.yml", false);
+            getPlugin.saveResource(fileName, false);
         }
         FileConfiguration customConfig = new YamlConfiguration();
         try {
@@ -32,10 +33,21 @@ public class config {
         } catch (IOException | InvalidConfigurationException e) {
             plugin.console.sendMessage(getPlugin, "There was a problem loading " + fileName + "!\n" + e, "critical");
         }
-        saveConfig(getPlugin, fileName);
+
+        Reader defaultConfigStream = null;
+        try {
+            defaultConfigStream = new InputStreamReader(getPlugin.getResource(fileName), "UTF8");
+        } catch (UnsupportedEncodingException e) {
+            plugin.console.sendMessage(getPlugin, "There was a problem loading " + fileName + "!\n" + e, "critical");
+        }
+        if (defaultConfigStream != null) {
+            YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(defaultConfigStream);
+            customConfig.setDefaults(defaultConfig);
+        }
     }
 
     public void saveConfig(Plugin getPlugin, String fileName) {
+        fileName = configName(fileName);
         /**
          @param getPlugin: Your plugin class
          @param fileName: Your file name
@@ -50,6 +62,7 @@ public class config {
     }
 
     public FileConfiguration getConfig(Plugin getPlugin, String fileName) {
+        fileName = configName(fileName);
         /**
          @param getPlugin: Your plugin class
          @param fileName: Your plugin fileName
@@ -66,7 +79,7 @@ public class config {
 
     private String configName(String fileName) {
         String extension = fileName.substring(fileName.lastIndexOf("."));
-        if (!extension.equalsIgnoreCase("yml")) {
+        if (!extension.equalsIgnoreCase(".yml")) {
             fileName += ".yml";
         }
         return fileName;

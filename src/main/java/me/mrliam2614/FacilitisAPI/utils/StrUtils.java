@@ -28,4 +28,17 @@ public class StrUtils {
          **/
         return ChatColor.translateAlternateColorCodes('&', message);
     }
+
+    public void center(String str) {
+        int maxWidth = 60;
+        int spaces = (maxWidth - ChatColor.stripColor(str).length()) / 2;
+        plugin.console.sendMessage("|" + repeat(" ", spaces - 1) + str);
+    }
+
+    private String repeat(String str, int times) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < times; i++)
+            sb.append(str);
+        return sb.toString();
+    }
 }

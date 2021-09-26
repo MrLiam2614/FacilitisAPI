@@ -4,3 +4,4 @@ version: 0.0.1
 authors: [MrLiam2614, TheLore]
 depend: [Vault]
 description: API to help new developer on their plugin creation
+api-version: 1.16
