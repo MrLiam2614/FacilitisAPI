@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.*;
+import java.util.logging.Level;
 
 public class config {
     private final FacilitisAPI plugin;
@@ -46,21 +47,6 @@ public class config {
         }
     }
 
-    public void saveConfig(Plugin getPlugin, String fileName) {
-        fileName = configName(fileName);
-        /**
-         @param getPlugin: Your plugin class
-         @param fileName: Your file name
-         **/
-        FileConfiguration customConfig = new YamlConfiguration();
-        File configFile = new File(getPlugin.getDataFolder(), fileName);
-        try {
-            customConfig.save(configFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public FileConfiguration getConfig(Plugin getPlugin, String fileName) {
         fileName = configName(fileName);
         /**
@@ -75,6 +61,20 @@ public class config {
             plugin.console.sendMessage(getPlugin, "There was a problem getting " + fileName + "!\n" + e, "critical");
         }
         return customConfig;
+    }
+
+    public void saveConfig(Plugin getPlugin, String fileName) {
+        fileName = configName(fileName);
+        /**
+         @param getPlugin: Your plugin class
+         @param fileName: Your plugin fileName
+         **/
+        try {
+            this.getConfig(getPlugin, fileName).save(fileName);
+        } catch (IOException var2) {
+            plugin.console.sendMessage(getPlugin, "Could not save config " + fileName + var2, "error");
+        }
+
     }
 
     private String configName(String fileName) {
