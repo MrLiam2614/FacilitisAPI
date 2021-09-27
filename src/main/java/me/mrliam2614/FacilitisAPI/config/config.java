@@ -63,7 +63,7 @@ public class config {
         return customConfig;
     }
 
-    public void saveConfig(Plugin getPlugin, String fileName) {
+    public boolean saveConfig(Plugin getPlugin, String fileName) {
         fileName = configName(fileName);
         /**
          @param getPlugin: Your plugin class
@@ -71,10 +71,11 @@ public class config {
          **/
         try {
             this.getConfig(getPlugin, fileName).save(fileName);
+            return true;
         } catch (IOException var2) {
             plugin.console.sendMessage(getPlugin, "Could not save config " + fileName + var2, "error");
         }
-
+        return false;
     }
 
     private String configName(String fileName) {
