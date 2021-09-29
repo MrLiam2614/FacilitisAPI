@@ -14,6 +14,6 @@ Add this to your pom.xml:
 <dependency>
   <groupId>com.github.MrLiam2614</groupId>
   <artifactId>FacilitisAPI</artifactId>
-  <version>v1.0.0</version>
+  <version>v1.0.1</version>
 </dependency>
 ```
