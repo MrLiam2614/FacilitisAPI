@@ -6,7 +6,7 @@
 
     <groupId>me.mrliam2614.FacilitisAPI</groupId>
     <artifactId>FacilitisAPI</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.0.3</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

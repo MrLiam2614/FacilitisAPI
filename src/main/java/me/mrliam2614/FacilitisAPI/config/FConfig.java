@@ -22,7 +22,7 @@ public class FConfig {
         fileConfig = new YamlConfiguration();
 
         if (defaults) {
-            plugin.saveResource(fileName, true);
+            plugin.saveResource(fileName, false);
         }
         try {
             fileConfig.load(file);
@@ -38,7 +38,7 @@ public class FConfig {
         file = new File(plugin.getDataFolder() + File.separator + fileName);
         fileConfig = new YamlConfiguration();
 
-        plugin.saveResource(fileName, true);
+        plugin.saveResource(fileName, false);
 
         try {
             fileConfig.load(file);
