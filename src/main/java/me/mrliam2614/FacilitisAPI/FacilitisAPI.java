@@ -1,6 +1,7 @@
 package me.mrliam2614.FacilitisAPI;
 
 import me.mrliam2614.FacilitisAPI.consoleManager.ConsoleMessage;
+import me.mrliam2614.FacilitisAPI.messages.messageManager;
 import me.mrliam2614.FacilitisAPI.startup.Messages;
 import me.mrliam2614.FacilitisAPI.utils.MySql;
 import me.mrliam2614.FacilitisAPI.utils.StrUtils;
@@ -15,6 +16,7 @@ public class FacilitisAPI extends JavaPlugin {
     public vaultImplementation vault;
     public MySql MySql;
     public Messages messages;
+    public messageManager msg;
 
     @Override
     public void onEnable() {
@@ -24,6 +26,7 @@ public class FacilitisAPI extends JavaPlugin {
         console = new ConsoleMessage(this);
         MySql = new MySql(this);
         messages = new Messages(this);
+        msg = new messageManager(this);
 
         messages.EnableMessage(this);
     }
