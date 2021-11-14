@@ -1,6 +1,6 @@
-package me.mrliam2614.FacilitisAPI.vault;
+package me.mrliam2614.vault;
 
-import me.mrliam2614.FacilitisAPI.FacilitisAPI;
+import me.mrliam2614.FacilitisAPI;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -11,7 +11,7 @@ import org.bukkit.plugin.ServicesManager;
 
 import java.util.logging.Logger;
 
-public class vaultImplementation {
+public class VaultImplementation {
     public FacilitisAPI plugin;
 
     private static final Logger log = Logger.getLogger("Minecraft");
@@ -19,7 +19,7 @@ public class vaultImplementation {
     private static Permission perms = null;
     private static Chat chat = null;
 
-    public vaultImplementation(FacilitisAPI plugin) {
+    public VaultImplementation(FacilitisAPI plugin) {
         this.plugin = plugin;
     }
 
@@ -52,7 +52,7 @@ public class vaultImplementation {
             return;
         }
         ServicesManager sm = Bukkit.getServicesManager();
-        Chat chatHook = new chatImplementation(plugin, perms);
+        Chat chatHook = new ChatImplementation(plugin, perms);
         sm.register(Chat.class, chatHook, plugin, ServicePriority.Highest);
 
         chat = sm.getRegistration(Chat.class).getProvider();

@@ -1,6 +1,6 @@
-package me.mrliam2614.FacilitisAPI.config;
+package me.mrliam2614.config;
 
-import me.mrliam2614.FacilitisAPI.FacilitisAPI;
+import me.mrliam2614.FacilitisAPI;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -41,6 +41,25 @@ public class FConfig {
         plugin.saveResource(fileName, false);
 
         try {
+            fileConfig.load(file);
+            saveConfig();
+        } catch (IOException | InvalidConfigurationException e) {
+            FacilitisAPI.getInstance().console.sendMessage(plugin, e.toString(), "error");
+        }
+    }
+
+    public FConfig(Plugin plugin, String fileName, String copyFile) {
+        this.plugin = plugin;
+        copyFile = copyFile.endsWith(".yml") ? copyFile : copyFile + ".yml";
+        fileName = fileName.endsWith(".yml") ? fileName : fileName + ".yml";
+
+        file = new File(plugin.getDataFolder() + File.separator + copyFile);
+        fileConfig = new YamlConfiguration();
+
+        plugin.saveResource(copyFile, false);
+
+        try {
+            file.renameTo(new File(plugin.getDataFolder() + File.separator + fileName));
             fileConfig.load(file);
             saveConfig();
         } catch (IOException | InvalidConfigurationException e) {

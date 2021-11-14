@@ -1,6 +1,6 @@
-package me.mrliam2614.FacilitisAPI.consoleManager;
+package me.mrliam2614.consoleManager;
 
-import me.mrliam2614.FacilitisAPI.FacilitisAPI;
+import me.mrliam2614.FacilitisAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 

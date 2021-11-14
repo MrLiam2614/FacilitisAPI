@@ -1,6 +1,6 @@
-package me.mrliam2614.FacilitisAPI.messages;
+package me.mrliam2614.messages;
 
-import me.mrliam2614.FacilitisAPI.FacilitisAPI;
+import me.mrliam2614.FacilitisAPI;
 import org.bukkit.entity.Player;
 
 public class messageManager {

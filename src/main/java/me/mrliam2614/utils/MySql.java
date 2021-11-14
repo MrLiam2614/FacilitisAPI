@@ -1,6 +1,6 @@
-package me.mrliam2614.FacilitisAPI.utils;
+package me.mrliam2614.utils;
 
-import me.mrliam2614.FacilitisAPI.FacilitisAPI;
+import me.mrliam2614.FacilitisAPI;
 import org.bukkit.plugin.Plugin;
 
 import java.sql.*;

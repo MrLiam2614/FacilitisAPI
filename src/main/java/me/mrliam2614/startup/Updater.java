@@ -1,6 +1,6 @@
-package me.mrliam2614.FacilitisAPI.startup;
+package me.mrliam2614.startup;
 
-import me.mrliam2614.FacilitisAPI.FacilitisAPI;
+import me.mrliam2614.FacilitisAPI;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;

@@ -1,12 +1,12 @@
-package me.mrliam2614.FacilitisAPI.vault;
+package me.mrliam2614.vault;
 
-import me.mrliam2614.FacilitisAPI.FacilitisAPI;
+import me.mrliam2614.FacilitisAPI;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;
 
-public class chatImplementation extends Chat {
+public class ChatImplementation extends Chat {
 
-    public chatImplementation(FacilitisAPI plugin, Permission perms) {
+    public ChatImplementation(FacilitisAPI plugin, Permission perms) {
         super(perms);
     }
 
