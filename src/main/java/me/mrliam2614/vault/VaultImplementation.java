@@ -5,9 +5,7 @@ import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.RegisteredServiceProvider;
-import org.bukkit.plugin.ServicePriority;
-import org.bukkit.plugin.ServicesManager;
+import org.bukkit.plugin.*;
 
 import java.util.logging.Logger;
 
@@ -26,6 +24,12 @@ public class VaultImplementation {
 
     public void Start() {
         if (!setupEconomy()) {
+            PluginManager pm = Bukkit.getPluginManager();
+            for(Plugin pl : pm.getPlugins()){
+                if(pl.getDescription().getDepend().contains("FacilitisAPI")){
+                    pm.disablePlugin(pl);
+                }
+            }
             plugin.getServer().getPluginManager().disablePlugin(plugin);
             return;
         }

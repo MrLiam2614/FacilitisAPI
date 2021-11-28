@@ -87,6 +87,8 @@ public class MySql {
                 stmt = connArray.get(IdPlugin).prepareStatement(sql);
                 stmt.executeUpdate();
             }
+            result.close();
+            stmt.close();
             return 1;
         } catch (SQLException e) {
             MySqlError(requestPlugin, e);
@@ -112,12 +114,37 @@ public class MySql {
             while (result.next()) {
                 results = result.getString(columnRequest);
             }
+            result.close();
             stmt.close();
         } catch (SQLException e) {
             MySqlError(requestPlugin, e);
             return "!SERVER MYSQL IS NOT CONNECTED!";
         }
         return results;
+    }
+
+
+    public ResultSet MySqlGetAll(Plugin requestPlugin, String table) {
+        IdPlugin = connInt.indexOf(requestPlugin);
+        if (!isConnected(IdPlugin))
+            return null;
+
+        String results = "";
+        String sql = "SELECT * FROM " + table;
+        Statement stmt;
+        ResultSet result;
+
+        try {
+            stmt = connArray.get(IdPlugin).createStatement();
+            result = stmt.executeQuery(sql);
+
+            result.close();
+            stmt.close();
+        } catch (SQLException e) {
+            MySqlError(requestPlugin, e);
+            return null;
+        }
+        return result;
     }
 
     public int MySqlUnconnect(Plugin requestPlugin, String pluginRequest) {
