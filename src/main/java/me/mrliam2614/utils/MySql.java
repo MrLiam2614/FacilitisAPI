@@ -137,9 +137,6 @@ public class MySql {
         try {
             stmt = connArray.get(IdPlugin).createStatement();
             result = stmt.executeQuery(sql);
-
-            result.close();
-            stmt.close();
         } catch (SQLException e) {
             MySqlError(requestPlugin, e);
             return null;
